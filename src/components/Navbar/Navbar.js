@@ -1,16 +1,24 @@
-const Navbar = () => {
+import {Navbar, Container, Button, ButtonGroup, ButtonToolbar} from 'react-bootstrap'
+import { CartWidget } from '../CartWidget/CartWidget.js'
+
+const Navbarcustom = () => {
     return (
-        <nav className='navbar navbar-expand-lg navbar-light bg-dark'>
-            <div className='container-fluid'>
-                <h3 className='text-white'>The BookStore</h3>
-                <div className='d-grid gap-2 d-md-flex mx-auto'>
-                    <button className='btn btn-outline-info border-0'>Novelas gráficas</button>
-                    <button className='btn btn-outline-info border-0'>Cómics</button>
-                    <button className='btn btn-outline-info border-0'>Mangas</button>
+        <Navbar expand="lg" variant="dark" bg="dark">
+            <Container>
+                <div>
+                    <h3 className='text-white'>The BookShop</h3>
                 </div>
-            </div>
-        </nav>
+                <ButtonToolbar aria-label="Toolbar with button groups">
+                    <ButtonGroup className="me-2">
+                        <Button variant='outline-info' className="border-0">Novelas gráficas</Button> 
+                        <Button variant='outline-info' className="border-0">Cómics</Button> 
+                        <Button variant='outline-info' className="border-0">Manga</Button>
+                    </ButtonGroup>
+                </ButtonToolbar>
+                <CartWidget />
+            </Container>    
+        </Navbar>
     )
 }
 
-export {Navbar};
+export {Navbarcustom};
