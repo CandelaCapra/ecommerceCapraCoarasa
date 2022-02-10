@@ -40,5 +40,3 @@ function ItemCount ({stock=1, initial=1, onAdd}) {
 }
 
 export {ItemCount};
-
-//Revisar el tema de las dependencias 
