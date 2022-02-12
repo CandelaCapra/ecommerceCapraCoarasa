@@ -7,7 +7,7 @@ const useCounter = (stock=1, init=1) => {
     
     const add = ()=> {
         if (number<stock && number>0){
-        setNumber(number +1)
+            setNumber(number +1)
         }else{
             alert(`Solo tenemos ${number} en stock`)
         }
@@ -15,7 +15,7 @@ const useCounter = (stock=1, init=1) => {
     
     const subtract = () => {
         if(number>0){
-        setNumber(number -1)
+            setNumber(number -1)
         }else{
             setNumber(0);
         }
