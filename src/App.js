@@ -6,7 +6,7 @@ function App() {
   return (
     <div>
       <Navbarcustom />    
-      <ItemListContainer greeting="Bienvenido a la tienda virtual de The BookStore"/>
+      <ItemListContainer greeting="Bienvenido a la tienda virtual de The BookShop"/>
     </div>
   );
 }
