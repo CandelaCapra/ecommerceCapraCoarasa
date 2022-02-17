@@ -1,4 +1,4 @@
-import { ItemCount } from '../itemCount/itemCount.js';
+import { ItemCount } from '../ItemCount/itemCount.js';
 import { ItemList} from '../ItemList/itemList.js'
 import {retrieveProducts} from '../../mocks/products.js'
 import { useState, useEffect } from 'react';
@@ -13,7 +13,6 @@ const ItemListContainer = ({greeting}) =>{
 
     useEffect (() => {
         retrieveProducts().then((products)=>{
-            console.log(products); 
             setProducts(products);
         })
         .finally(()=>{

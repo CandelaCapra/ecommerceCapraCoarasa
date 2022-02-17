@@ -28,23 +28,23 @@ const useCounter = (stock=1, init=1) => {
     }
 }
 
-function ItemCount ({stock=1, initial=1, onAdd}) {
+const ItemCount = ({stock=1, initial=1, onAdd}) => {
     const counter = useCounter(stock, parseInt(initial));
 
     return (
     <div>
-        <Card style={{ width: '18rem' }} className="text-center mx-auto">
-            <Card.Body>
-                <InputGroup className="mb-3">
-                    <Button variant="info" onClick={counter.subtract}> 
-                        <Dash className="fs-3"></Dash>
+        <Card style={{ width: '18rem' }} className="border-0 opacity-75 mt-3">
+            <Card.Body className="p-0">
+                <InputGroup className="mb-3" style={{ width: '8.7rem' }} size="sm">
+                    <Button variant="outline-info" onClick={counter.subtract} className="border-secondary"> 
+                        <Dash className="fs-4 text-dark"></Dash>
                     </Button>
-                    <FormControl value={counter.number} className="text-center border-info bg-transparent" readOnly/>
-                    <Button variant="info" onClick={counter.add}>
-                        <Plus className="fs-3"></Plus>
+                    <FormControl value={counter.number} className="text-center border-secondary bg-transparent" readOnly/>
+                    <Button variant="outline-info" onClick={counter.add} className="border-secondary">
+                        <Plus className="fs-4 text-dark"></Plus>
                     </Button>
                 </InputGroup>
-                <Button variant="info" onClick={()=> {onAdd(counter.number)}} disabled={counter.number===0}>Agregar al carrito</Button>
+                <Button variant="info" onClick={()=> {onAdd(counter.number)}} disabled={counter.number===0} style={{ width: '12rem' }}>Agregar al carrito</Button>
             </Card.Body>
         </Card>    
     </div>

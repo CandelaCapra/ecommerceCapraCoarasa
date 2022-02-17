@@ -1,6 +1,6 @@
 import {Card, Button} from 'react-bootstrap'
 
-function Item ({product}){
+const Item  = ({product}) => {
     return (
     <div> 
         <Card style={{ width: '18rem' }} className="text-center mx-2 my-5">
