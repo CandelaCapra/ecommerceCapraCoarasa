@@ -30,7 +30,6 @@ const useCounter = (stock=1, init=1) => {
 
 const ItemCount = ({stock=1, initial=1, onAdd}) => {
     const counter = useCounter(stock, parseInt(initial));
-
     return (
     <div>
         <Card style={{ width: '18rem' }} className="border-0 opacity-75 mt-3">
