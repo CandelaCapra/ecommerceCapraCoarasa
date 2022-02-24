@@ -16,8 +16,6 @@ const ItemListContainer = ({greeting}) =>{
        })
     },[categoryId])
     
-
-    //Dependiendo de la categoría en la que se encuentra se genera el título de la página
     return (
         <>
         {products[0] ? 

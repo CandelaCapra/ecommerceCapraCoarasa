@@ -6,7 +6,7 @@ const useCounter = (stock=1, init=1) => {
     const [number, setNumber] = useState (init);
     
     const add = ()=> {
-        if (number<stock && number>0){
+        if (number<stock){
             setNumber(number +1)
         }else{
             alert(`Solo tenemos ${number} en stock`)
@@ -28,7 +28,7 @@ const useCounter = (stock=1, init=1) => {
     }
 }
 
-const ItemCount = ({stock=1, initial=1, onAdd}) => {
+const ItemCount = ({stock=1, initial=1, addToCart}) => {
     const counter = useCounter(stock, parseInt(initial));
     return (
     <div>
@@ -43,7 +43,7 @@ const ItemCount = ({stock=1, initial=1, onAdd}) => {
                         <Plus className="fs-4 text-dark"></Plus>
                     </Button>
                 </InputGroup>
-                <Button variant="info" onClick={()=> {onAdd(counter.number)}} disabled={counter.number===0} style={{ width: '12rem' }}>Agregar al carrito</Button>
+                <Button variant="info" onClick={()=>addToCart(counter.number)} style={{ width: '12rem' }}>Agregar al carrito</Button>
             </Card.Body>
         </Card>    
     </div>

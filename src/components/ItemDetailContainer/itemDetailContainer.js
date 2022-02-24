@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 
 const ItemDetailContainer = () =>{
     const [product, setProduct]=useState();
-    const [loadPage, setLoadPage]= useState(true); 
+    const [loadingPage, setLoadingPage]= useState(true); 
     const {id} = useParams();
 
     useEffect (() => {
@@ -13,18 +13,16 @@ const ItemDetailContainer = () =>{
             setProduct(product);
         }) 
         .finally(()=>{
-            setLoadPage(false);
+            setLoadingPage(false);
         })
     }, [id])
 
     return (
         <>
-        {loadPage ? (
-                <p className="text-center mt-5 fs-4">Cargando detalles ...</p>
-        ) :
-            <>
-                <ItemDetail key={product.id} product={product}></ItemDetail>
-            </>
+        {loadingPage ? 
+            <p className="text-center mt-5 fs-4">Cargando detalles ...</p>
+        :
+            <ItemDetail key={product.id} product={product}></ItemDetail>
         }
         </>
     )
