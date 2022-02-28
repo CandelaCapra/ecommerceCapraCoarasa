@@ -1,15 +1,21 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Row, Col, Container, Tabs, Tab, CardImg, Card, Button } from "react-bootstrap";
 import { ItemCount } from "../ItemCount/itemCount.js"
 import "../ItemDetail/itemDetail.css"
 import { Link } from 'react-router-dom'
+import { CartContext } from "../../context/CartContext.js";
 
 const ItemDetail = ({product}) => {
     const [quantity, setQuantity] = useState(0); 
 
+    const {addItem} = useContext(CartContext);
+
     const addToCart = (quantity) =>{
+        if (quantity>0){
         setQuantity(quantity);
         product.stock = product.stock - quantity;
+        addItem(product, quantity);
+        }
     }
 
     return (
@@ -24,11 +30,11 @@ const ItemDetail = ({product}) => {
                         <h3>{product.title}</h3>
                         <h6 className="text-muted fw-bold">{product.author} <span className="fst-italic fw-light">(Autor)</span></h6>
                         <p className="fw-light letterSize pt-3">Edición {product.format} | Idioma {product.language} | {product.publisher} | {product.pages} páginas | ISBN:{product.isbn}</p>
-                        <h4 className="mt-5 text-info">${product.price},00 <span className="text-dark fw-light fs-6 fst-italic">{product.stock!=0 ? '(Stock disponible)' : '(Sin stock)'}</span></h4>
-                        {quantity!=0 ? 
+                        <h4 className="mt-5 text-info">${product.price},00 <span className="text-dark fw-light fs-6 fst-italic">{product.stock>0 ? '(Stock disponible)' : '(Sin stock)'}</span></h4>
+                        {quantity>0 ? 
                             <Link to={'/cart'}><Button variant="info" className="opacity-75 mt-3">Finalizar compra</Button></Link>
                         :
-                            <ItemCount stock={product.stock} initial="1" addToCart={addToCart}></ItemCount>
+                            <ItemCount stock={product.stock} initial={product.stock>0 ? 1 : 0} addToCart={addToCart}></ItemCount>
                         }                   
                         <p className="mt-4 fw-light align-self-end"><span className="fw-bolder">Categorías:</span> {product.category==="Novelas" ? product.category+" gráficas / Juvenil" : product.category==="Comics" ? "Cómics" : product.category} / {product.title} </p>   
                     </Card.Body>
