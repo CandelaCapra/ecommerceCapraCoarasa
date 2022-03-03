@@ -17,7 +17,7 @@ const ItemDetail = ({product}) => {
         addItem(product, quantity);
         }
     }
-
+  
     return (
         <>
         <Card className="mt-5 mb-3 border-0 px-5 mx-5">
