@@ -2,14 +2,18 @@ import {Navbar, Container, Button, ButtonGroup, ButtonToolbar} from 'react-boots
 import { CartWidget } from '../CartWidget/CartWidget.js'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { retrieveCategories } from '../../mocks/products.js'
+import { collection, getDocs} from 'firebase/firestore'
+import { db } from '../../services/firebase/firebase.js'
 
 const Navbarcustom = () => {
     const [category, setCategory]= useState([]);
 
     useEffect (() => {
-        retrieveCategories().then(category=>{
-            setCategory(category);   
+        getDocs(collection(db, 'categories')).then(querySnapshot=>{
+            const category = querySnapshot.docs.map(doc=>{
+                return {id: doc.id,...doc.data()}
+            })
+            setCategory(category)
         })
     }, [])
     

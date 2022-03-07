@@ -36,7 +36,7 @@ const ItemDetail = ({product}) => {
                         :
                             <ItemCount stock={product.stock} initial={product.stock>0 ? 1 : 0} addToCart={addToCart}></ItemCount>
                         }                   
-                        <p className="mt-4 fw-light align-self-end"><span className="fw-bolder">Categorías:</span> {product.category==="Novelas" ? product.category+" gráficas / Juvenil" : product.category==="Comics" ? "Cómics" : product.category} / {product.title} </p>   
+                        <p className="mt-4 fw-light align-self-end"><span className="fw-bolder">Categorías:</span> {product.category==="novelas" ? product.category+" gráficas / Juvenil" : product.category==="comics" ? "Cómics" : "Manga"} / {product.title} </p>   
                     </Card.Body>
                 </Col>
             </Row>

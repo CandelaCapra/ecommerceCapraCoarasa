@@ -1,7 +1,8 @@
-import {retrieveProduct} from '../../mocks/products.js'
 import { useState, useEffect } from 'react';
 import { ItemDetail } from '../ItemDetail/itemDetail.js';
 import { useParams } from 'react-router-dom';
+import { getDoc, doc } from 'firebase/firestore';
+import { db } from '../../services/firebase/firebase.js';
 
 const ItemDetailContainer = () =>{
     const [product, setProduct]=useState();
@@ -9,11 +10,19 @@ const ItemDetailContainer = () =>{
     const {id} = useParams();
 
     useEffect (() => {
-        retrieveProduct(id).then((product)=>{
-            setProduct(product);
-        }) 
+       setLoadingPage(true)
+       
+       const docRef = doc(db, 'products', id)
+
+       getDoc(docRef).then(querySnapshot=>{
+           const product = {id: querySnapshot.id, ...querySnapshot.data()}
+           setProduct(product)
+       })
         .finally(()=>{
             setLoadingPage(false);
+        })
+        return (()=>{
+            setProduct()
         })
     }, [id])
 
