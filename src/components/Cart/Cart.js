@@ -4,19 +4,19 @@ import {ItemCart} from '../ItemCart/ItemCart.js'
 import {Button, Table} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-
 const Cart = () => {
-    const {cart, cartTotal} = useContext(CartContext);
+    const {cart, cartTotal, clear} = useContext(CartContext);
+
     return (
         <>
-        <p className="fs-1 text-center mt-4">Carrito</p>
-        {cart.length===0 ? 
-            (<div className='text-center mt-5'>
+        <h1 className=" text-center mt-4">Carrito</h1>
+        {cart.length===0 ?
+            <div className='text-center mt-5'>
                 <p className='mb-5'>El carrito está vacío</p>
                 <Link to={'/'}><Button variant="info">Volver al inicio</Button></Link>
-            </div>)
-        : 
-            (<Table className='w-75 mx-auto text-info text-center mt-5'>
+            </div>
+        :<>
+            <Table className='w-75 mx-auto text-info text-center mt-5'>
                 <thead className="text-dark">
                     <tr>
                         <th></th>
@@ -36,7 +36,12 @@ const Cart = () => {
                         <td className="fw-bolder fs-5 text-info">${cartTotal()},00</td>
                     </tr>
                 </tbody>
-            </Table>)
+            </Table>
+            <div className='text-center'>
+                <Button variant="outline-info" className='mx-auto text-dark border-2 me-2' onClick={clear}>Vaciar carrito</Button>
+                <Link to={'/checkout'}><Button variant="info" className='mx-auto'>Confirmar compra</Button></Link>
+            </div>
+        </>
         }
         </>
     )

@@ -54,6 +54,14 @@ const CartContextProvider = ({children})=>{
         return total;
     }
     
+    const retrieveItemQty = (productId) =>{
+        if(isInCart(productId)){
+            return  cart.find(elem=>elem.product.id===productId).quantity
+        }else{
+            return 0; 
+        }
+    }
+
     return (
         <CartContext.Provider value={{
             cart,
@@ -62,7 +70,8 @@ const CartContextProvider = ({children})=>{
             clear,
             isInCart, 
             cartQuantity, 
-            cartTotal
+            cartTotal,
+            retrieveItemQty
         }}>
             {children};
         </CartContext.Provider>

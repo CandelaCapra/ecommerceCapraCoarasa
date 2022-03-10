@@ -7,14 +7,15 @@ import { CartContext } from "../../context/CartContext.js";
 
 const ItemDetail = ({product}) => {
     const [quantity, setQuantity] = useState(0); 
-
-    const {addItem} = useContext(CartContext);
-
+    const {addItem, retrieveItemQty} = useContext(CartContext);
+    const [stock, setStock] = useState(product.stock-retrieveItemQty(product.id))
+      
     const addToCart = (quantity) =>{
-        if (quantity>0){
-        setQuantity(quantity);
-        product.stock = product.stock - quantity;
-        addItem(product, quantity);
+        if (quantity>0 && quantity<=stock){
+            const newStock = stock-quantity;
+            setStock(newStock);
+            setQuantity(quantity);
+            addItem(product, quantity);
         }
     }
   
@@ -23,7 +24,7 @@ const ItemDetail = ({product}) => {
         <Card className="mt-5 mb-3 border-0 px-5 mx-5">
             <Row>
                 <Col md={4} className="mx-auto"> 
-                    <CardImg className="rounded img-fluid" src={product.pictureUrl}/>
+                    <CardImg className="rounded img-fluid shadow" src={product.pictureUrl}/>
                 </Col>
                 <Col className="ps-5" md={8}>
                     <Card.Body className="pt-0">
@@ -32,9 +33,9 @@ const ItemDetail = ({product}) => {
                         <p className="fw-light letterSize pt-3">Edición {product.format} | Idioma {product.language} | {product.publisher} | {product.pages} páginas | ISBN:{product.isbn}</p>
                         <h4 className="mt-5 text-info">${product.price},00 <span className="text-dark fw-light fs-6 fst-italic">{product.stock>0 ? '(Stock disponible)' : '(Sin stock)'}</span></h4>
                         {quantity>0 ? 
-                            <Link to={'/cart'}><Button variant="info" className="opacity-75 mt-3">Finalizar compra</Button></Link>
+                            <Link to={'/cart'}><Button variant="info" className="mt-3">Finalizar compra</Button></Link>
                         :
-                            <ItemCount stock={product.stock} initial={product.stock>0 ? 1 : 0} addToCart={addToCart}></ItemCount>
+                            <ItemCount stock={stock} initial={stock>0 ? 1 : 0} addToCart={addToCart}></ItemCount>
                         }                   
                         <p className="mt-4 fw-light align-self-end"><span className="fw-bolder">Categorías:</span> {product.category==="novelas" ? product.category+" gráficas / Juvenil" : product.category==="comics" ? "Cómics" : "Manga"} / {product.title} </p>   
                     </Card.Body>

@@ -7,7 +7,6 @@ const ItemCart = ({item}) =>{
     const {removeItem} = useContext(CartContext)
 
     const removeFromCart = () =>{
-        item.product.stock=item.product.stock+item.quantity;
         removeItem(item.product.id)
     }
 

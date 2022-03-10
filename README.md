@@ -20,4 +20,6 @@ Se creó también un contador para poder definir la cantidad de productos que el
 - React-router
 - React-Bootstrap
 - React-Bootstrap-icons
+- Sweet Alert
+- Firebase
 

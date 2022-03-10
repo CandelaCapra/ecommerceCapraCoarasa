@@ -28,7 +28,7 @@ const ItemListContainer = ({greeting}) =>{
         <>
         {products[0] ? 
             <>
-                <p className="fs-1 text-center mt-4">{categoryId===undefined ? greeting : categoryId==="comics" ?  "Cómics" : categoryId==="novelas" ? "Novelas gráficas" : "Manga" }</p>
+                <h1 className="text-center mt-4">{categoryId===undefined ? greeting : categoryId==="comics" ?  "Cómics" : categoryId==="novelas" ? "Novelas gráficas" : "Manga" }</h1>
                 <ItemList products={products}></ItemList>
             </> 
             :
