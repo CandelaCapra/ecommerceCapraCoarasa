@@ -39,7 +39,9 @@ const Cart = () => {
             </Table>
             <div className='text-center'>
                 <Button variant="outline-info" className='mx-auto text-dark border-2 me-2' onClick={clear}>Vaciar carrito</Button>
-                <Link to={'/checkout'}><Button variant="info" className='mx-auto'>Confirmar compra</Button></Link>
+                <Link to={'/checkout'}>
+                    <Button variant="info" className='mx-auto'>Confirmar compra</Button>
+                </Link>
             </div>
         </>
         }

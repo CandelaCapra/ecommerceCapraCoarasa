@@ -6,7 +6,6 @@ const CartContextProvider = ({children})=>{
     const [cart, setCart] = useState([]);
 
     const addItem = (product, quantity) =>{
-
         if (isInCart(product.id)) {
             const modifiedCart = cart.map(elem=>{
                 if(elem.product.id===product.id){
@@ -68,12 +67,11 @@ const CartContextProvider = ({children})=>{
             addItem,
             removeItem,
             clear,
-            isInCart, 
             cartQuantity, 
             cartTotal,
             retrieveItemQty
         }}>
-            {children};
+            {children}
         </CartContext.Provider>
     )
 }

@@ -1,4 +1,4 @@
-import { Item } from "../Item/item";
+import { Item } from "../Item/Item.js";
 import {CardGroup} from "react-bootstrap"
 
 function ItemList ({products}){

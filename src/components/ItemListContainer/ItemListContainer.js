@@ -1,24 +1,20 @@
 import { ItemList} from '../ItemList/itemList.js'
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { getDocs, collection, query, where } from 'firebase/firestore';
-import { db } from '../../services/firebase/firebase.js'
+import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import { retrieveProducts } from '../../services/firebase/firebase.js'
+import swal from 'sweetalert'
 
 const ItemListContainer = ({greeting}) =>{
     const [products, setProducts]=useState([]);
     const {categoryId} = useParams();
 
     useEffect (() => {
-        const collectionRef = categoryId ?
-            query(collection(db, 'products'), where('category', '==', categoryId)) :
-            collection(db, 'products')
-        getDocs(collectionRef).then(QuerySnapshot=>{
-            const products = QuerySnapshot.docs.map(doc=>{
-                return {id: doc.id, ...doc.data()}
-            }) 
-            setProducts(products)
+        retrieveProducts(categoryId).then((response)=>{
+           setProducts(response)
+        }).catch((error)=>{
+            swal("Lo sentimos", error, "error")
         })
-    
+        
         return (()=>{
             setProducts([]);
         })
@@ -28,7 +24,9 @@ const ItemListContainer = ({greeting}) =>{
         <>
         {products[0] ? 
             <>
-                <h1 className="text-center mt-4">{categoryId===undefined ? greeting : categoryId==="comics" ?  "Cómics" : categoryId==="novelas" ? "Novelas gráficas" : "Manga" }</h1>
+                <h1 className="text-center mt-4">
+                    {categoryId===undefined ? greeting : categoryId==="comics" ?  "Cómics" : categoryId==="novelas" ? "Novelas gráficas" : "Manga" }
+                </h1>
                 <ItemList products={products}></ItemList>
             </> 
             :
@@ -38,5 +36,5 @@ const ItemListContainer = ({greeting}) =>{
     )
 }
 
-export {ItemListContainer};
+export {ItemListContainer}
 

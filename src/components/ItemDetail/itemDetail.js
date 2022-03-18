@@ -1,9 +1,9 @@
-import { useContext, useState } from "react";
-import { Row, Col, Container, Tabs, Tab, CardImg, Card, Button } from "react-bootstrap";
-import { ItemCount } from "../ItemCount/itemCount.js"
+import { useContext, useState } from "react"
+import { Row, Col, Container, Tabs, Tab, CardImg, Card, Button } from "react-bootstrap"
+import { ItemCount } from "../ItemCount/ItemCount.js"
 import "../ItemDetail/itemDetail.css"
 import { Link } from 'react-router-dom'
-import { CartContext } from "../../context/CartContext.js";
+import { CartContext } from "../../context/CartContext.js"
 
 const ItemDetail = ({product}) => {
     const [quantity, setQuantity] = useState(0); 
@@ -31,13 +31,18 @@ const ItemDetail = ({product}) => {
                         <h3>{product.title}</h3>
                         <h6 className="text-muted fw-bold">{product.author} <span className="fst-italic fw-light">(Autor)</span></h6>
                         <p className="fw-light letterSize pt-3">Edición {product.format} | Idioma {product.language} | {product.publisher} | {product.pages} páginas | ISBN:{product.isbn}</p>
-                        <h4 className="mt-5 text-info">${product.price},00 <span className="text-dark fw-light fs-6 fst-italic">{product.stock>0 ? '(Stock disponible)' : '(Sin stock)'}</span></h4>
+                        <h4 className="mt-5 text-info">${product.price},00 
+                            <span className="text-dark fw-light fs-6 fst-italic">{product.stock>0 ? ' (Stock disponible)' : ' (Sin stock)'}</span>
+                        </h4>
                         {quantity>0 ? 
                             <Link to={'/cart'}><Button variant="info" className="mt-3">Finalizar compra</Button></Link>
                         :
                             <ItemCount stock={stock} initial={stock>0 ? 1 : 0} addToCart={addToCart}></ItemCount>
                         }                   
-                        <p className="mt-4 fw-light align-self-end"><span className="fw-bolder">Categorías:</span> {product.category==="novelas" ? product.category+" gráficas / Juvenil" : product.category==="comics" ? "Cómics" : "Manga"} / {product.title} </p>   
+                        <p className="mt-4 fw-light align-self-end">
+                            <span className="fw-bolder">Categorías:</span> 
+                            {product.category==="novelas" ? product.category+" gráficas / Juvenil" : product.category==="comics" ? " Cómics" : " Manga"} / {product.title} 
+                        </p>   
                     </Card.Body>
                 </Col>
             </Row>

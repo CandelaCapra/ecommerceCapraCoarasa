@@ -1,7 +1,7 @@
 import {Cart4} from 'react-bootstrap-icons'
 import {Button} from 'react-bootstrap'
-import { CartContext } from "../../context/CartContext.js";
-import { useContext } from 'react';
+import { CartContext } from "../../context/CartContext.js"
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 
 const CartWidget = () =>{
