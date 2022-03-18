@@ -1,4 +1,4 @@
-import { ItemList} from '../ItemList/itemList.js'
+import { ItemList} from '../ItemList/ItemList.js'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { retrieveProducts } from '../../services/firebase/firebase.js'

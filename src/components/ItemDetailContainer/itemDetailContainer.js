@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { ItemDetail } from '../ItemDetail/itemDetail.js'
+import { ItemDetail } from '../ItemDetail/ItemDetail.js'
 import { useParams, Link } from 'react-router-dom'
 import { retrieveProduct } from '../../services/firebase/firebase.js'
 import swal from 'sweetalert'

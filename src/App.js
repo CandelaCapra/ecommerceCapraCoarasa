@@ -5,7 +5,7 @@ import {ItemDetailContainer} from './components/ItemDetailContainer/ItemDetailCo
 import {Cart} from './components/Cart/Cart.js'
 import { BrowserRouter, Route, Routes} from "react-router-dom"
 import { CartContextProvider} from './context/CartContext.js'
-import { CheckOutForm } from './components/CheckOutForm/CheckOutForm.js'
+import { CheckOutForm } from './components/CheckoutForm/CheckOutForm.js'
 
 function App() {
   return (

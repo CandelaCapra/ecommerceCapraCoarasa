@@ -6,7 +6,7 @@ Ecommerce para una librería online que comercializa cómics, mangas y novelas g
 
 ![Demo](FlowWebApp.gif)
 
-###### Descripción
+## Descripción
 
 El proyecto contiene dos ramas: Master y Test. Además de la rama principal, se creó una adicional, llamada Test, donde se realizan los cambios que, una vez aprobados, se incluyen en la rama Master. 
 
